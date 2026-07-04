@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="发现实用的 AI 对话、图像、视频、办公、编程和音乐工具。"
+    />
+    <meta name="theme-color" content="#080b10" />
+    <title>AI 指南针 — 发现高效 AI 工具</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#directory">跳到工具列表</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#" aria-label="AI 指南针首页">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" role="img">
+              <path d="M16 3 27 9.5v13L16 29 5 22.5v-13L16 3Z" />
+              <path d="m19.5 10.5-2.1 6.9-6.9 2.1 2.1-6.9 6.9-2.1Z" />
+            </svg>
+          </span>
+          <span>AI 指南针</span>
+        </a>
+
+        <nav class="main-nav" aria-label="主导航">
+          <a href="#directory">工具分类</a>
+          <a href="#popular">热门推荐</a>
+          <a href="#advertise">广告合作</a>
+        </nav>
+
+        <a class="button button-ghost header-action" href="#submit">
+          提交工具
+          <svg viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M4 10h12M11 5l5 5-5 5" />
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-orb hero-orb-one" aria-hidden="true"></div>
+        <div class="hero-orb hero-orb-two" aria-hidden="true"></div>
+        <div class="container hero-content">
+          <p class="eyebrow"><span></span> 精选实用 AI 工具</p>
+          <h1 id="hero-title">
+            找到适合你的
+            <span>AI 超能力</span>
+          </h1>
+          <p class="hero-copy">
+            告别信息过载。我们精选真正好用的 AI 工具，帮你更快完成工作与创作。
+          </p>
+
+          <form class="search-shell" role="search" onsubmit="return false;">
+            <label class="sr-only" for="tool-search">搜索 AI 工具</label>
+            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-4-4" />
+            </svg>
+            <input
+              id="tool-search"
+              type="search"
+              placeholder="搜索工具名称、用途或标签..."
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <kbd>⌘ K</kbd>
+            <button class="clear-search" id="clear-search" type="button" hidden>
+              清空
+            </button>
+          </form>
+
+          <div class="keyword-row" aria-label="热门搜索">
+            <span>热门：</span>
+            <div id="keyword-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="container">
+        <aside id="banner-ad" class="banner-wrap" aria-label="广告"></aside>
+      </div>
+
+      <section class="directory-section" id="directory" aria-labelledby="directory-title">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">探索工具</p>
+              <h2 id="directory-title">发现值得使用的 AI 产品</h2>
+            </div>
+            <p class="result-count" id="result-count" aria-live="polite"></p>
+          </div>
+
+          <div
+            class="category-list"
+            id="category-list"
+            role="group"
+            aria-label="工具分类"
+          ></div>
+
+          <div class="tool-grid" id="tool-grid"></div>
+
+          <div class="empty-state" id="empty-state" hidden>
+            <span class="empty-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="7" />
+                <path d="m20 20-4-4M8.5 8.5l5 5m0-5-5 5" />
+              </svg>
+            </span>
+            <h3>没有找到相关工具</h3>
+            <p>试试其他关键词，或者清除当前筛选条件。</p>
+            <button class="button button-primary" id="clear-filters" type="button">
+              清除筛选
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="submit-section" id="submit" aria-labelledby="submit-title">
+        <div class="container submit-panel">
+          <div>
+            <p class="section-kicker">共建工具库</p>
+            <h2 id="submit-title">发现了值得推荐的 AI 工具？</h2>
+            <p>把产品名称和网址发给我们，审核后会加入导航。</p>
+          </div>
+          <a
+            class="button button-light"
+            href="mailto:hello@example.com?subject=提交 AI 工具"
+          >
+            提交工具
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M4 10h12M11 5l5 5-5 5" />
+            </svg>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="advertise">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32">
+                <path d="M16 3 27 9.5v13L16 29 5 22.5v-13L16 3Z" />
+                <path d="m19.5 10.5-2.1 6.9-6.9 2.1 2.1-6.9 6.9-2.1Z" />
+              </svg>
+            </span>
+            <span>AI 指南针</span>
+          </a>
+          <p>为中文用户精选真正实用的 AI 产品。</p>
+        </div>
+        <div>
+          <h3>工具分类</h3>
+          <a href="#directory">AI 对话</a>
+          <a href="#directory">图像设计</a>
+          <a href="#directory">编程开发</a>
+        </div>
+        <div>
+          <h3>关于本站</h3>
+          <a href="#submit">提交工具</a>
+          <a href="mailto:hello@example.com?subject=广告合作">广告合作</a>
+          <a href="#directory">浏览全部</a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>© 2026 AI 指南针</span>
+        <span>让每个人都能找到合适的 AI 工具</span>
+      </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
