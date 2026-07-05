@@ -5,173 +5,266 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="发现实用的 AI 对话、图像、视频、办公、编程和音乐工具。"
+      content="AETHER 是简单直观的 AI 工具发现系统，帮助你快速找到适合对话、图像、视频、办公、编程和音乐创作的工具。"
     />
-    <meta name="theme-color" content="#080b10" />
-    <title>AI 指南针 — 发现高效 AI 工具</title>
+    <meta name="theme-color" content="#080b18" />
+    <title>AETHER — AI DISCOVERY OS</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <a class="skip-link" href="#directory">跳到工具列表</a>
 
-    <header class="site-header">
-      <div class="header-inner">
-        <a class="brand" href="#" aria-label="AI 指南针首页">
-          <span class="brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 32 32" role="img">
-              <path d="M16 3 27 9.5v13L16 29 5 22.5v-13L16 3Z" />
-              <path d="m19.5 10.5-2.1 6.9-6.9 2.1 2.1-6.9 6.9-2.1Z" />
-            </svg>
-          </span>
-          <span>AI 指南针</span>
-        </a>
+    <div class="aurora aurora-one" aria-hidden="true"></div>
+    <div class="aurora aurora-two" aria-hidden="true"></div>
+    <div class="aurora aurora-three" aria-hidden="true"></div>
 
-        <nav class="main-nav" aria-label="主导航">
-          <a href="#directory">工具分类</a>
-          <a href="#popular">热门推荐</a>
-          <a href="#advertise">广告合作</a>
-        </nav>
-
-        <a class="button button-ghost header-action" href="#submit">
-          提交工具
-          <svg viewBox="0 0 20 20" aria-hidden="true">
-            <path d="M4 10h12M11 5l5 5-5 5" />
-          </svg>
-        </a>
+    <header class="system-bar">
+      <a class="system-brand" href="#directory" aria-label="AETHER 首页">
+        <span class="brand-icon" aria-hidden="true">AE</span>
+        <strong>AETHER</strong>
+      </a>
+      <nav class="system-menu" aria-label="主导航">
+        <a href="#directory">工具库</a>
+        <a href="#directory">分类</a>
+        <button type="button" data-view="收藏" aria-pressed="false">收藏</button>
+        <a href="#advertise">商业合作</a>
+      </nav>
+      <div class="system-status" aria-label="网站状态">
+        <span class="status-dot"></span>
+        <span>系统在线</span>
       </div>
     </header>
 
-    <main>
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-orb hero-orb-one" aria-hidden="true"></div>
-        <div class="hero-orb hero-orb-two" aria-hidden="true"></div>
-        <div class="container hero-content">
-          <p class="eyebrow"><span></span> 精选实用 AI 工具</p>
-          <h1 id="hero-title">
-            找到适合你的
-            <span>AI 超能力</span>
-          </h1>
-          <p class="hero-copy">
-            告别信息过载。我们精选真正好用的 AI 工具，帮你更快完成工作与创作。
-          </p>
+    <main class="os-window" aria-label="AETHER AI 工具发现系统">
+      <aside class="system-sidebar" id="system-sidebar">
+        <div class="window-titlebar">
+          <span class="window-dot dot-red" aria-hidden="true"></span>
+          <span class="window-dot dot-yellow" aria-hidden="true"></span>
+          <span class="window-dot dot-green" aria-hidden="true"></span>
+          <div class="window-brand">
+            <strong>AETHER</strong>
+            <small>AI DISCOVERY OS</small>
+          </div>
+        </div>
 
-          <form class="search-shell" role="search" onsubmit="return false;">
-            <label class="sr-only" for="tool-search">搜索 AI 工具</label>
-            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="11" cy="11" r="7" />
-              <path d="m20 20-4-4" />
-            </svg>
-            <input
-              id="tool-search"
-              type="search"
-              placeholder="搜索工具名称、用途或标签..."
-              autocomplete="off"
-              spellcheck="false"
-            />
+        <nav class="sidebar-nav" aria-label="工具视图与分类">
+          <p class="nav-label">常用</p>
+          <button class="sidebar-item" type="button" data-view="推荐" aria-pressed="true">
+            <span class="nav-icon icon-recommend" aria-hidden="true">✦</span>
+            <span>为你推荐</span>
+          </button>
+          <button class="sidebar-item" type="button" data-view="全部" aria-pressed="false">
+            <span class="nav-icon" aria-hidden="true">⌕</span>
+            <span>全部工具</span>
+          </button>
+          <button class="sidebar-item" type="button" data-view="收藏" aria-pressed="false">
+            <span class="nav-icon" aria-hidden="true">♥</span>
+            <span>我的收藏</span>
+          </button>
+
+          <p class="nav-label category-label">分类</p>
+          <button class="sidebar-item" type="button" data-view="AI 对话" aria-pressed="false">
+            <span class="nav-icon icon-chat" aria-hidden="true">聊</span>
+            <span>AI 对话</span>
+          </button>
+          <button class="sidebar-item" type="button" data-view="图像设计" aria-pressed="false">
+            <span class="nav-icon icon-image" aria-hidden="true">◇</span>
+            <span>图像设计</span>
+          </button>
+          <button class="sidebar-item" type="button" data-view="视频创作" aria-pressed="false">
+            <span class="nav-icon icon-video" aria-hidden="true">▶</span>
+            <span>视频创作</span>
+          </button>
+          <button class="sidebar-item" type="button" data-view="办公效率" aria-pressed="false">
+            <span class="nav-icon icon-office" aria-hidden="true">▤</span>
+            <span>办公效率</span>
+          </button>
+          <button class="sidebar-item" type="button" data-view="编程开发" aria-pressed="false">
+            <span class="nav-icon icon-code" aria-hidden="true">&lt;/&gt;</span>
+            <span>编程开发</span>
+          </button>
+          <button class="sidebar-item" type="button" data-view="音频音乐" aria-pressed="false">
+            <span class="nav-icon icon-audio" aria-hidden="true">♫</span>
+            <span>音频音乐</span>
+          </button>
+        </nav>
+
+        <a class="sidebar-sponsor" href="#advertise">
+          <small>品牌合作</small>
+          <strong>让更多用户<br />发现你的 AI 产品</strong>
+          <span>查看广告方案 →</span>
+        </a>
+      </aside>
+
+      <section class="workspace">
+        <header class="workspace-toolbar">
+          <button class="search-trigger" id="search-trigger" type="button">
+            <span class="search-symbol" aria-hidden="true">⌕</span>
+            <span id="search-value">搜索工具、用途或工作流...</span>
             <kbd>⌘ K</kbd>
-            <button class="clear-search" id="clear-search" type="button" hidden>
-              清空
-            </button>
-          </form>
+          </button>
+          <a class="button primary-button toolbar-submit" href="#submit">＋ 提交工具</a>
+          <button class="mobile-search-button" id="mobile-search" type="button" aria-label="搜索">
+            ⌕
+          </button>
+        </header>
 
-          <div class="keyword-row" aria-label="热门搜索">
-            <span>热门：</span>
-            <div id="keyword-list"></div>
-          </div>
-        </div>
-      </section>
-
-      <div class="container">
-        <aside id="banner-ad" class="banner-wrap" aria-label="广告"></aside>
-      </div>
-
-      <section class="directory-section" id="directory" aria-labelledby="directory-title">
-        <div class="container">
-          <div class="section-heading">
+        <div class="workspace-scroll">
+          <section class="welcome-panel" aria-labelledby="welcome-title">
             <div>
-              <p class="section-kicker">探索工具</p>
-              <h2 id="directory-title">发现值得使用的 AI 产品</h2>
+              <p class="eyebrow">AETHER ONLINE</p>
+              <h1 id="welcome-title">今天想用 AI 做什么？</h1>
+              <p>从 19 个精选工具中，快速找到最适合你的一款。</p>
             </div>
-            <p class="result-count" id="result-count" aria-live="polite"></p>
+            <aside class="new-tools-card" aria-label="本周新增工具">
+              <span aria-hidden="true">↗</span>
+              <small>本周新增</small>
+              <strong>6 个工具</strong>
+            </aside>
+          </section>
+
+          <div class="quick-filters" role="group" aria-label="快捷筛选">
+            <button type="button" data-view="推荐" aria-pressed="true">✦ 推荐</button>
+            <button type="button" data-keyword="热门" aria-pressed="false">热门</button>
+            <button type="button" data-keyword="免费" aria-pressed="false">免费可用</button>
+            <button type="button" data-keyword="中文" aria-pressed="false">中文友好</button>
           </div>
 
-          <div
-            class="category-list"
-            id="category-list"
-            role="group"
-            aria-label="工具分类"
-          ></div>
+          <section class="directory" id="directory" aria-labelledby="directory-title">
+            <div class="section-heading">
+              <div>
+                <p class="section-kicker">DISCOVER</p>
+                <h2 id="directory-title">精选工具</h2>
+              </div>
+              <p id="result-count" aria-live="polite"></p>
+            </div>
 
-          <div class="tool-grid" id="tool-grid"></div>
+            <div class="tool-grid" id="tool-grid"></div>
 
-          <div class="empty-state" id="empty-state" hidden>
-            <span class="empty-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <circle cx="11" cy="11" r="7" />
-                <path d="m20 20-4-4M8.5 8.5l5 5m0-5-5 5" />
-              </svg>
-            </span>
-            <h3>没有找到相关工具</h3>
-            <p>试试其他关键词，或者清除当前筛选条件。</p>
-            <button class="button button-primary" id="clear-filters" type="button">
-              清除筛选
-            </button>
-          </div>
-        </div>
-      </section>
+            <div class="empty-state" id="empty-state" hidden>
+              <span aria-hidden="true">⌕</span>
+              <h3>没有找到相关工具</h3>
+              <p>试试其他关键词，或者清除当前筛选条件。</p>
+              <button class="button primary-button" id="clear-filters" type="button">
+                清除筛选
+              </button>
+            </div>
+          </section>
 
-      <section class="submit-section" id="submit" aria-labelledby="submit-title">
-        <div class="container submit-panel">
-          <div>
-            <p class="section-kicker">共建工具库</p>
-            <h2 id="submit-title">发现了值得推荐的 AI 工具？</h2>
-            <p>把产品名称和网址发给我们，审核后会加入导航。</p>
-          </div>
-          <a
-            class="button button-light"
-            href="mailto:hello@example.com?subject=提交 AI 工具"
-          >
-            提交工具
-            <svg viewBox="0 0 20 20" aria-hidden="true">
-              <path d="M4 10h12M11 5l5 5-5 5" />
-            </svg>
-          </a>
+          <section class="business-section" id="advertise" aria-labelledby="business-title">
+            <div class="business-heading">
+              <div>
+                <p class="section-kicker">PARTNER WITH AETHER</p>
+                <h2 id="business-title">把产品展示给正在寻找 AI 工具的人</h2>
+                <p>首发阶段采用人工确认和微信收款，位置、素材与排期沟通后生效。</p>
+              </div>
+              <div class="contact-card">
+                <small>商务联系方式</small>
+                <a id="business-email" href="#">793679928@qq.com</a>
+                <div>
+                  <span>微信：<strong id="wechat-value">793679928</strong></span>
+                  <button id="copy-wechat" type="button">复制微信号</button>
+                </div>
+              </div>
+            </div>
+            <div class="pricing-grid" id="pricing-grid"></div>
+            <p class="business-disclaimer" id="business-disclaimer"></p>
+          </section>
+
+          <section class="submit-section" id="submit" aria-labelledby="submit-title">
+            <div class="submit-copy">
+              <p class="section-kicker">SUBMIT A TOOL</p>
+              <h2 id="submit-title">让更多人发现你的工具</h2>
+              <p>选择免费排队审核，或使用付费加急优先审核。</p>
+            </div>
+            <article class="submit-option">
+              <small>免费</small>
+              <h3>普通提交</h3>
+              <p>按正常顺序审核，适合非紧急收录。</p>
+              <a class="button secondary-button" id="free-submit" href="#">免费提交</a>
+            </article>
+            <article class="submit-option priority-option">
+              <small>¥99 / 单次</small>
+              <h3>加急审核</h3>
+              <p>优先审核资料，不保证通过或永久收录。</p>
+              <a class="button primary-button" id="priority-submit" href="#">申请加急</a>
+            </article>
+          </section>
+
+          <footer class="site-footer">
+            <div>
+              <span class="brand-icon" aria-hidden="true">AE</span>
+              <div>
+                <strong>AETHER</strong>
+                <p>AI DISCOVERY OS</p>
+              </div>
+            </div>
+            <section aria-labelledby="disclosure-title">
+              <h2 id="disclosure-title">广告与联盟披露</h2>
+              <p id="affiliate-disclosure"></p>
+            </section>
+            <p>© 2026 AETHER</p>
+          </footer>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer" id="advertise">
-      <div class="container footer-grid">
-        <div class="footer-brand">
-          <a class="brand" href="#">
-            <span class="brand-mark" aria-hidden="true">
-              <svg viewBox="0 0 32 32">
-                <path d="M16 3 27 9.5v13L16 29 5 22.5v-13L16 3Z" />
-                <path d="m19.5 10.5-2.1 6.9-6.9 2.1 2.1-6.9 6.9-2.1Z" />
-              </svg>
-            </span>
-            <span>AI 指南针</span>
-          </a>
-          <p>为中文用户精选真正实用的 AI 产品。</p>
+    <nav class="tool-dock" id="tool-dock" aria-label="快捷分类">
+      <button type="button" data-view="推荐" aria-pressed="true" aria-label="为你推荐">
+        <span class="dock-icon brand-dock">AE</span><span>推荐</span>
+      </button>
+      <button type="button" data-view="AI 对话" aria-pressed="false" aria-label="AI 对话">
+        <span class="dock-icon icon-chat">聊</span><span>对话</span>
+      </button>
+      <button type="button" data-view="图像设计" aria-pressed="false" aria-label="图像设计">
+        <span class="dock-icon icon-image">◇</span><span>图像</span>
+      </button>
+      <button type="button" data-view="视频创作" aria-pressed="false" aria-label="视频创作">
+        <span class="dock-icon icon-video">▶</span><span>视频</span>
+      </button>
+      <button type="button" data-view="办公效率" aria-pressed="false" aria-label="办公效率">
+        <span class="dock-icon icon-office">▤</span><span>办公</span>
+      </button>
+      <button type="button" data-view="编程开发" aria-pressed="false" aria-label="编程开发">
+        <span class="dock-icon icon-code">&lt;/&gt;</span><span>编程</span>
+      </button>
+      <span class="dock-divider" aria-hidden="true"></span>
+      <button type="button" data-view="收藏" aria-pressed="false" aria-label="我的收藏">
+        <span class="dock-icon icon-favorite">♥</span><span>收藏</span>
+      </button>
+    </nav>
+
+    <nav class="mobile-nav" aria-label="移动端导航">
+      <button type="button" data-view="推荐" aria-pressed="true"><span>✦</span>发现</button>
+      <button type="button" data-view="全部" aria-pressed="false"><span>▦</span>分类</button>
+      <button type="button" data-view="收藏" aria-pressed="false"><span>♥</span>收藏</button>
+      <a href="#advertise"><span>↗</span>合作</a>
+    </nav>
+
+    <div class="search-overlay" id="search-overlay" hidden>
+      <section class="spotlight" role="dialog" aria-modal="true" aria-labelledby="search-title">
+        <div class="spotlight-header">
+          <div>
+            <small>AETHER SEARCH</small>
+            <h2 id="search-title">搜索工具</h2>
+          </div>
+          <button id="close-search" type="button" aria-label="关闭搜索">×</button>
         </div>
-        <div>
-          <h3>工具分类</h3>
-          <a href="#directory">AI 对话</a>
-          <a href="#directory">图像设计</a>
-          <a href="#directory">编程开发</a>
-        </div>
-        <div>
-          <h3>关于本站</h3>
-          <a href="#submit">提交工具</a>
-          <a href="mailto:hello@example.com?subject=广告合作">广告合作</a>
-          <a href="#directory">浏览全部</a>
-        </div>
-      </div>
-      <div class="container footer-bottom">
-        <span>© 2026 AI 指南针</span>
-        <span>让每个人都能找到合适的 AI 工具</span>
-      </div>
-    </footer>
+        <label class="spotlight-input">
+          <span aria-hidden="true">⌕</span>
+          <input
+            id="spotlight-search"
+            type="search"
+            placeholder="输入名称、用途、分类或标签..."
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </label>
+        <p>输入后结果会在工具库中即时更新。按 Esc 关闭。</p>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
     <script src="data.js"></script>
     <script src="app.js"></script>

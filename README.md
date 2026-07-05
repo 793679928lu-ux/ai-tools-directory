@@ -1,6 +1,6 @@
-# AI 指南针
+# AETHER
 
-一个简洁、深色、可直接运行的中文 AI 工具导航网站。
+一个采用 macOS/iOS 系统化视觉、可直接运行的中文 AI 工具导航网站。
 
 ## 运行
 
@@ -25,32 +25,30 @@
 ```
 
 - `category` 应使用 `categories` 数组中已有的分类。
-- `featured` 可省略；设为 `true` 时显示“推荐”标签。
+- `featured` 可省略；设为 `true` 时显示“编辑精选”标签。
+- `affiliateUrl` 可省略；只有获得官方联盟专属链接后才填写。
 - `accent` 控制图标和卡片的强调色。
 
-## 修改广告
+## 商业合作与广告
 
-编辑 `data.js` 中的：
+编辑 `data.js` 中的 `business` 和 `ads`：
 
-- `ads.banner`：首屏横幅广告。
 - `ads.native`：工具列表中的原生广告卡。
+- `business.packages`：广告套餐与价格。
+- `business.email`、`business.wechat`：公开商务联系方式。
 
-广告链接当前指向页面内的合作区域。发布前可把 `url` 替换为实际广告落地页；外部链接会自动在新标签页打开。
-
-## 修改联系方式
-
-`index.html` 中的 `hello@example.com` 是示例邮箱。正式使用前请替换为真实联系邮箱。
+广告链接当前指向页面内的合作区域。成交广告可把 `url` 替换为实际落地页；外部链接会自动在新标签页打开。
 
 ## 文件说明
 
 - `index.html`：页面结构。
 - `styles.css`：视觉和响应式布局。
-- `data.js`：工具、分类和广告内容。
-- `app.js`：搜索、筛选和渲染逻辑。
-- `tests/app.test.js`：筛选函数测试。
+- `data.js`：工具、分类、广告、价格和联系方式。
+- `app.js`：搜索、筛选、收藏、商务联系和渲染逻辑。
+- `tests/`：逻辑与静态文件兼容测试。
 
 ## 运行测试
 
 ```bash
-/Users/lujiaxing/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node --test tests/app.test.js
+node --test tests/*.test.js
 ```

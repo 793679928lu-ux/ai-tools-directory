@@ -1,4 +1,9 @@
-window.AI_DIRECTORY_DATA = {
+window.AETHER_DATA = {
+  brand: {
+    name: "AETHER",
+    tagline: "AI DISCOVERY OS",
+    description: "为所有人提供简单、直观的 AI 工具发现系统。",
+  },
   categories: [
     "全部",
     "AI 对话",
@@ -169,6 +174,51 @@ window.AI_DIRECTORY_DATA = {
       accent: "#60a5fa",
     },
   ],
+  business: {
+    email: "793679928@qq.com",
+    wechat: "793679928",
+    packages: [
+      {
+        id: "featured",
+        name: "精选工具置顶",
+        price: "¥99",
+        period: "30 天",
+        description: "分类内优先展示，并明确标注“赞助”。",
+      },
+      {
+        id: "native",
+        name: "内容流原生广告",
+        price: "¥199",
+        period: "30 天",
+        description: "在工具列表中自然展示品牌与产品卖点。",
+      },
+      {
+        id: "banner",
+        name: "首页横幅",
+        price: "¥299",
+        period: "30 天",
+        description: "占据首页核心曝光区域，适合新品发布。",
+      },
+      {
+        id: "launch",
+        name: "首发组合套餐",
+        price: "¥499",
+        period: "30 天",
+        description: "精选置顶、内容流和首页横幅各一个。",
+        recommended: true,
+      },
+      {
+        id: "priority",
+        name: "付费加急审核",
+        price: "¥99",
+        period: "单次",
+        description: "优先审核工具资料，不保证收录或永久展示。",
+      },
+    ],
+    disclaimer: "所有广告和加急服务均由人工确认。付费不保证流量、点击、成交或收录结果。",
+    disclosure:
+      "标注“广告”或“赞助”的内容属于付费展示。部分外链未来可能是联盟链接，网站可能获得佣金，但不会增加你的购买价格。",
+  },
   ads: {
     banner: {
       label: "广告",
