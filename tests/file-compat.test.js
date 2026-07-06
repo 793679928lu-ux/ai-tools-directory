@@ -21,6 +21,26 @@ const guidePages = [
     path: "guides/ai-coding-tools.html",
     title: "AI 编程工具推荐",
   },
+  {
+    path: "guides/ai-video-tools.html",
+    title: "AI 视频工具推荐",
+  },
+  {
+    path: "guides/ai-ppt-tools.html",
+    title: "AI PPT 工具推荐",
+  },
+  {
+    path: "guides/ai-search-tools.html",
+    title: "AI 搜索工具推荐",
+  },
+  {
+    path: "guides/ai-music-tools.html",
+    title: "AI 音乐工具推荐",
+  },
+  {
+    path: "guides/free-ai-tools.html",
+    title: "免费 AI 工具合集",
+  },
 ].map((page) => ({
   ...page,
   source: fs.readFileSync(path.join(root, page.path), "utf8"),
@@ -74,6 +94,11 @@ test("entry page contains the AETHER system and monetization surfaces", () => {
   assert.match(html, /guides\/ai-writing-tools\.html/);
   assert.match(html, /guides\/ai-image-tools\.html/);
   assert.match(html, /guides\/ai-coding-tools\.html/);
+  assert.match(html, /guides\/ai-video-tools\.html/);
+  assert.match(html, /guides\/ai-ppt-tools\.html/);
+  assert.match(html, /guides\/ai-search-tools\.html/);
+  assert.match(html, /guides\/ai-music-tools\.html/);
+  assert.match(html, /guides\/free-ai-tools\.html/);
   assert.match(html, /id="business-highlights"/);
   assert.match(html, /id="business-faq-list"/);
   assert.match(html, /广告与联盟披露/);
