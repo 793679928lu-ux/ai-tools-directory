@@ -281,14 +281,14 @@ window.AETHER_DATA = {
       title: "让你的 AI 产品被更多人发现",
       description: "触达正在主动寻找 AI 工具的高意向用户。",
       cta: "了解合作",
-      url: "#advertise",
+      url: "advertise.html",
     },
     native: {
       label: "广告",
       title: "这里可以展示你的产品",
       description: "原生广告位，样式与工具内容流自然融合。",
       cta: "预订广告位",
-      url: "#advertise",
+      url: "advertise.html",
     },
   },
 };

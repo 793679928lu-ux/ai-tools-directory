@@ -975,11 +975,18 @@ svg {
   gap: 28px;
 }
 
-.business-heading > div:first-child > p:last-child,
-.submit-copy > p:last-child {
+.business-heading > div:first-child > p:not(.section-kicker),
+.submit-copy > p:not(.section-kicker) {
   max-width: 680px;
   margin: 11px 0 0;
   color: var(--muted);
+}
+
+.section-actions {
+  display: flex;
+  margin-top: 18px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .contact-card {
@@ -1214,6 +1221,10 @@ svg {
   margin-top: auto;
 }
 
+.submit-copy > .button {
+  margin-top: 18px;
+}
+
 .priority-option {
   border-color: rgba(139, 105, 255, 0.45);
   background: rgba(41, 30, 76, 0.48);
@@ -1310,7 +1321,12 @@ svg {
 
 .guide-panel,
 .guide-card,
-.guide-cta {
+.guide-cta,
+.monetization-stat,
+.offer-card,
+.ad-preview,
+.script-box,
+.submit-path-card {
   border: 1px solid var(--line);
   border-radius: 22px;
   background: rgba(9, 12, 23, 0.58);
@@ -1409,6 +1425,166 @@ svg {
   margin-top: 18px;
   color: #d7ccff;
   font-weight: 760;
+}
+
+.monetization-strip {
+  display: grid;
+  margin-top: 26px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.monetization-stat {
+  padding: 18px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(57, 211, 255, 0.12), transparent 48%),
+    rgba(255, 255, 255, 0.04);
+}
+
+.monetization-stat strong {
+  display: block;
+  font-size: 30px;
+  letter-spacing: -0.04em;
+}
+
+.monetization-stat span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.offer-grid,
+.ad-preview-grid,
+.script-grid {
+  display: grid;
+  margin-top: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.offer-card,
+.ad-preview,
+.submit-path-card {
+  padding: 20px;
+}
+
+.offer-card small,
+.ad-preview small,
+.submit-path-card small {
+  color: #cfc3ff;
+  font-weight: 850;
+}
+
+.offer-card h3,
+.submit-path-card h2,
+.script-box h3 {
+  margin: 10px 0 8px;
+  font-size: 21px;
+  letter-spacing: -0.03em;
+}
+
+.offer-card p,
+.ad-preview p,
+.submit-path-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.offer-card.is-recommended,
+.submit-path-card.is-recommended {
+  border-color: rgba(139, 105, 255, 0.62);
+  background:
+    radial-gradient(circle at 90% 0, rgba(123, 86, 238, 0.28), transparent 48%),
+    rgba(19, 20, 40, 0.9);
+}
+
+.ad-preview {
+  position: relative;
+  min-height: 172px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 100% 0, rgba(80, 219, 255, 0.22), transparent 48%),
+    rgba(9, 12, 23, 0.58);
+}
+
+.ad-preview-wide {
+  grid-column: 1 / -1;
+}
+
+.ad-preview strong {
+  display: block;
+  margin: 12px 0 8px;
+  font-size: 25px;
+  letter-spacing: -0.04em;
+}
+
+.ad-preview span {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #cbd3df;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.process-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  gap: 12px;
+  list-style: none;
+}
+
+.process-list li {
+  display: grid;
+  padding: 15px;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.process-list strong {
+  color: #edf0f6;
+}
+
+.process-list span {
+  color: var(--muted);
+}
+
+.script-box {
+  padding: 20px;
+}
+
+.script-box pre {
+  margin: 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  color: #d8dde7;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.script-box h3 + pre {
+  margin-top: 10px;
+}
+
+.submit-path-card {
+  display: flex;
+  min-height: 270px;
+  flex-direction: column;
+}
+
+.submit-path-card .button {
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 .guide-panel .faq-item {
@@ -1687,6 +1863,13 @@ svg {
     grid-template-columns: 1fr;
   }
 
+  .monetization-strip,
+  .offer-grid,
+  .ad-preview-grid,
+  .script-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .submit-copy {
     grid-column: 1 / -1;
   }
@@ -1810,7 +1993,15 @@ svg {
   }
 
   .guide-entry-grid,
-  .guide-grid {
+  .guide-grid,
+  .monetization-strip,
+  .offer-grid,
+  .ad-preview-grid,
+  .script-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-list li {
     grid-template-columns: 1fr;
   }
 

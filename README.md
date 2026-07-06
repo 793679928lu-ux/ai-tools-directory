@@ -39,14 +39,21 @@
 - `business.faq`：商业合作常见问题。
 - `business.email`、`business.wechat`：公开商务联系方式。
 
-广告链接当前指向页面内的合作区域。成交广告可把 `url` 替换为实际落地页；外部链接会自动在新标签页打开。
+广告链接当前指向独立广告合作页。成交广告可把 `url` 替换为实际落地页；外部链接会自动在新标签页打开。
+
+独立成交页：
+
+- `advertise.html`：广告合作 / Media Kit，维护套餐、广告位样例、流程、风险说明和招商话术。
+- `submit-tool.html`：提交工具页面，维护免费提交、¥99 加急审核、所需资料和审核规则。
+
+更新套餐或联系方式时，需要同步检查首页商业合作区、`data.js`、这两个独立页面和测试。
 
 ## SEO 与搜索收录
 
 - `index.html`：维护标题、描述、canonical、Open Graph、Twitter Card 和 JSON-LD。
 - `data.js` 中的 `seo`：维护站点 URL、标题、描述和关键词。
 - `robots.txt`：告诉搜索引擎允许抓取网站，并声明 sitemap 地址。
-- `sitemap.xml`：维护线上首页地址。更换域名后需要同步更新。
+- `sitemap.xml`：维护线上首页、商业化页面和指南页地址。更换域名后需要同步更新。
 
 ## 新增指南页
 

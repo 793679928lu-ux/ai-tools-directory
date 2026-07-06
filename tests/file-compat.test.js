@@ -81,6 +81,19 @@ const guidePages = [
   ...page,
   source: fs.readFileSync(path.join(root, page.path), "utf8"),
 }));
+const landingPages = [
+  {
+    path: "advertise.html",
+    title: "AETHER 广告合作",
+  },
+  {
+    path: "submit-tool.html",
+    title: "提交 AI 工具",
+  },
+].map((page) => ({
+  ...page,
+  source: fs.readFileSync(path.join(root, page.path), "utf8"),
+}));
 
 test("entry page uses ordered local classic scripts", () => {
   const dataIndex = html.indexOf('<script src="data.js"></script>');
@@ -92,7 +105,7 @@ test("entry page uses ordered local classic scripts", () => {
 });
 
 test("html pages do not require remote styles or scripts", () => {
-  [html, ...guidePages.map((page) => page.source)].forEach((source) => {
+  [html, ...guidePages.map((page) => page.source), ...landingPages.map((page) => page.source)].forEach((source) => {
     assert.doesNotMatch(source, /<script[^>]+src=["']https?:/i);
     assert.doesNotMatch(
       source,
@@ -114,6 +127,8 @@ test("data script loads without network or module APIs", () => {
   assert.equal(context.window.AETHER_DATA.business.email, "793679928@qq.com");
   assert.equal(context.window.AETHER_DATA.business.wechat, "793679928");
   assert.equal(context.window.AETHER_DATA.business.packages.length, 5);
+  assert.equal(context.window.AETHER_DATA.ads.banner.url, "advertise.html");
+  assert.equal(context.window.AETHER_DATA.ads.native.url, "advertise.html");
   assert.equal(context.window.AETHER_DATA.seo.url, "https://ai-tools-directory-swart.vercel.app/");
   assert.equal(context.window.AETHER_DATA.business.highlights.length, 4);
   assert.equal(context.window.AETHER_DATA.business.faq.length, 5);
@@ -126,6 +141,8 @@ test("entry page contains the AETHER system and monetization surfaces", () => {
   assert.match(html, /id="search-overlay"/);
   assert.match(html, /id="advertise"/);
   assert.match(html, /id="submit"/);
+  assert.match(html, /href="advertise\.html"/);
+  assert.match(html, /href="submit-tool\.html"/);
   assert.match(html, /id="guides"/);
   assert.match(html, /guides\/ai-writing-tools\.html/);
   assert.match(html, /guides\/ai-image-tools\.html/);
@@ -190,6 +207,14 @@ test("robots and sitemap point search engines to the production site", () => {
       ),
     );
   });
+  landingPages.forEach((page) => {
+    assert.match(
+      sitemap,
+      new RegExp(
+        `<loc>https://ai-tools-directory-swart\\.vercel\\.app/${page.path}</loc>`,
+      ),
+    );
+  });
 });
 
 test("guide pages expose standalone SEO metadata and structured data", () => {
@@ -216,4 +241,38 @@ test("guide pages expose standalone SEO metadata and structured data", () => {
     assert.equal(jsonLd["@type"], "Article");
     assert.match(jsonLd.mainEntityOfPage, new RegExp(page.path));
   });
+});
+
+test("monetization landing pages expose SEO metadata and conversion copy", () => {
+  landingPages.forEach((page) => {
+    assert.match(page.source, new RegExp(`<title>[^<]*${page.title}[^<]*</title>`));
+    assert.match(page.source, /<meta\s+name="description"\s+content="[^"]+"\s*\/>/);
+    assert.match(
+      page.source,
+      new RegExp(
+        `<link\\s+rel="canonical"\\s+href="https://ai-tools-directory-swart\\.vercel\\.app/${page.path}"\\s*/>`,
+      ),
+    );
+    assert.match(page.source, /<meta property="og:type" content="website" \/>/);
+    assert.match(page.source, /<meta name="twitter:card" content="summary" \/>/);
+    assert.match(page.source, /793679928@qq\.com/);
+    assert.match(page.source, /793679928/);
+
+    const match = page.source.match(
+      /<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/,
+    );
+    assert.ok(match);
+
+    const jsonLd = JSON.parse(match[1]);
+    assert.equal(jsonLd["@context"], "https://schema.org");
+    assert.equal(jsonLd["@type"], "WebPage");
+    assert.match(jsonLd.mainEntityOfPage, new RegExp(page.path));
+  });
+
+  assert.match(landingPages[0].source, /Media Kit/);
+  assert.match(landingPages[0].source, /招商话术/);
+  assert.match(landingPages[0].source, /¥499/);
+  assert.match(landingPages[1].source, /提交你的 AI 工具/);
+  assert.match(landingPages[1].source, /¥99/);
+  assert.match(landingPages[1].source, /加急审核/);
 });
