@@ -48,12 +48,22 @@
 - `robots.txt`：告诉搜索引擎允许抓取网站，并声明 sitemap 地址。
 - `sitemap.xml`：维护线上首页地址。更换域名后需要同步更新。
 
+## 新增指南页
+
+指南页放在 `guides/` 目录。新增文章时需要同步：
+
+- 新建一个独立 HTML 文件，并设置 title、description、canonical、Open Graph 和 JSON-LD。
+- 在首页 `#guides` 区域增加入口卡片。
+- 在 `sitemap.xml` 增加对应 URL。
+- 更新测试，确保新页面能被检查到。
+
 ## 文件说明
 
 - `index.html`：页面结构。
 - `styles.css`：视觉和响应式布局。
 - `data.js`：工具、分类、广告、价格和联系方式。
 - `app.js`：搜索、筛选、收藏、商务联系和渲染逻辑。
+- `guides/`：原创 SEO 内容页。
 - `robots.txt` / `sitemap.xml`：搜索引擎抓取入口。
 - `tests/`：逻辑与静态文件兼容测试。
 

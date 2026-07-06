@@ -8,6 +8,23 @@ const root = path.resolve(__dirname, "..");
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const robots = fs.readFileSync(path.join(root, "robots.txt"), "utf8");
 const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
+const guidePages = [
+  {
+    path: "guides/ai-writing-tools.html",
+    title: "AI 写作工具推荐",
+  },
+  {
+    path: "guides/ai-image-tools.html",
+    title: "AI 绘图工具推荐",
+  },
+  {
+    path: "guides/ai-coding-tools.html",
+    title: "AI 编程工具推荐",
+  },
+].map((page) => ({
+  ...page,
+  source: fs.readFileSync(path.join(root, page.path), "utf8"),
+}));
 
 test("entry page uses ordered local classic scripts", () => {
   const dataIndex = html.indexOf('<script src="data.js"></script>');
@@ -18,12 +35,14 @@ test("entry page uses ordered local classic scripts", () => {
   assert.doesNotMatch(html, /<script[^>]+type=["']module["']/i);
 });
 
-test("entry page does not require remote styles or scripts", () => {
-  assert.doesNotMatch(html, /<script[^>]+src=["']https?:/i);
-  assert.doesNotMatch(
-    html,
-    /<link[^>]+rel=["']stylesheet["'][^>]+href=["']https?:/i,
-  );
+test("html pages do not require remote styles or scripts", () => {
+  [html, ...guidePages.map((page) => page.source)].forEach((source) => {
+    assert.doesNotMatch(source, /<script[^>]+src=["']https?:/i);
+    assert.doesNotMatch(
+      source,
+      /<link[^>]+rel=["']stylesheet["'][^>]+href=["']https?:/i,
+    );
+  });
 });
 
 test("data script loads without network or module APIs", () => {
@@ -51,6 +70,10 @@ test("entry page contains the AETHER system and monetization surfaces", () => {
   assert.match(html, /id="search-overlay"/);
   assert.match(html, /id="advertise"/);
   assert.match(html, /id="submit"/);
+  assert.match(html, /id="guides"/);
+  assert.match(html, /guides\/ai-writing-tools\.html/);
+  assert.match(html, /guides\/ai-image-tools\.html/);
+  assert.match(html, /guides\/ai-coding-tools\.html/);
   assert.match(html, /id="business-highlights"/);
   assert.match(html, /id="business-faq-list"/);
   assert.match(html, /广告与联盟披露/);
@@ -89,4 +112,38 @@ test("robots and sitemap point search engines to the production site", () => {
     sitemap,
     /<loc>https:\/\/ai-tools-directory-swart\.vercel\.app\/<\/loc>/,
   );
+  guidePages.forEach((page) => {
+    assert.match(
+      sitemap,
+      new RegExp(
+        `<loc>https://ai-tools-directory-swart\\.vercel\\.app/${page.path}</loc>`,
+      ),
+    );
+  });
+});
+
+test("guide pages expose standalone SEO metadata and structured data", () => {
+  guidePages.forEach((page) => {
+    assert.match(page.source, new RegExp(`<title>[^<]*${page.title}[^<]*</title>`));
+    assert.match(page.source, /<meta\s+name="description"\s+content="[^"]+"\s*\/>/);
+    assert.match(
+      page.source,
+      new RegExp(
+        `<link\\s+rel="canonical"\\s+href="https://ai-tools-directory-swart\\.vercel\\.app/${page.path}"\\s*/>`,
+      ),
+    );
+    assert.match(page.source, /<meta property="og:type" content="article" \/>/);
+    assert.match(page.source, /<meta name="twitter:card" content="summary" \/>/);
+    assert.match(page.source, /href="\.\.\/index\.html#directory"/);
+
+    const match = page.source.match(
+      /<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/,
+    );
+    assert.ok(match);
+
+    const jsonLd = JSON.parse(match[1]);
+    assert.equal(jsonLd["@context"], "https://schema.org");
+    assert.equal(jsonLd["@type"], "Article");
+    assert.match(jsonLd.mainEntityOfPage, new RegExp(page.path));
+  });
 });
