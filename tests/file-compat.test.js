@@ -41,6 +41,22 @@ const guidePages = [
     path: "guides/free-ai-tools.html",
     title: "免费 AI 工具合集",
   },
+  {
+    path: "guides/chatgpt-vs-claude.html",
+    title: "ChatGPT vs Claude",
+  },
+  {
+    path: "guides/midjourney-vs-canva-ai.html",
+    title: "Midjourney vs Canva AI",
+  },
+  {
+    path: "guides/cursor-vs-github-copilot.html",
+    title: "Cursor vs GitHub Copilot",
+  },
+  {
+    path: "guides/free-vs-paid-ai-tools.html",
+    title: "免费 AI 工具 vs 付费 AI 工具",
+  },
 ].map((page) => ({
   ...page,
   source: fs.readFileSync(path.join(root, page.path), "utf8"),
@@ -99,6 +115,10 @@ test("entry page contains the AETHER system and monetization surfaces", () => {
   assert.match(html, /guides\/ai-search-tools\.html/);
   assert.match(html, /guides\/ai-music-tools\.html/);
   assert.match(html, /guides\/free-ai-tools\.html/);
+  assert.match(html, /guides\/chatgpt-vs-claude\.html/);
+  assert.match(html, /guides\/midjourney-vs-canva-ai\.html/);
+  assert.match(html, /guides\/cursor-vs-github-copilot\.html/);
+  assert.match(html, /guides\/free-vs-paid-ai-tools\.html/);
   assert.match(html, /id="business-highlights"/);
   assert.match(html, /id="business-faq-list"/);
   assert.match(html, /广告与联盟披露/);

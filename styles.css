@@ -1366,6 +1366,40 @@ svg {
   gap: 16px;
 }
 
+.comparison-table {
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.comparison-table table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+  vertical-align: top;
+}
+
+.comparison-table th {
+  color: #edf0f6;
+  font-size: 13px;
+}
+
+.comparison-table td {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: 0;
+}
+
 .guide-card {
   padding: 22px;
 }

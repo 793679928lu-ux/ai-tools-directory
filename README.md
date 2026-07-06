@@ -50,7 +50,7 @@
 
 ## 新增指南页
 
-指南页放在 `guides/` 目录，当前已有 8 篇原创 SEO 内容页。新增文章时需要同步：
+指南页放在 `guides/` 目录，当前已有 12 篇原创 SEO 内容页。新增文章时需要同步：
 
 - 新建一个独立 HTML 文件，并设置 title、description、canonical、Open Graph 和 JSON-LD。
 - 在首页 `#guides` 区域增加入口卡片。
