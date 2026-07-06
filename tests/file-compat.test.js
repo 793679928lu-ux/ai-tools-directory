@@ -8,6 +8,7 @@ const root = path.resolve(__dirname, "..");
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const robots = fs.readFileSync(path.join(root, "robots.txt"), "utf8");
 const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
+const growthPage = fs.readFileSync(path.join(root, "growth.html"), "utf8");
 const guidePages = [
   {
     path: "guides/ai-writing-tools.html",
@@ -105,7 +106,12 @@ test("entry page uses ordered local classic scripts", () => {
 });
 
 test("html pages do not require remote styles or scripts", () => {
-  [html, ...guidePages.map((page) => page.source), ...landingPages.map((page) => page.source)].forEach((source) => {
+  [
+    html,
+    growthPage,
+    ...guidePages.map((page) => page.source),
+    ...landingPages.map((page) => page.source),
+  ].forEach((source) => {
     assert.doesNotMatch(source, /<script[^>]+src=["']https?:/i);
     assert.doesNotMatch(
       source,
@@ -132,6 +138,22 @@ test("data script loads without network or module APIs", () => {
   assert.equal(context.window.AETHER_DATA.seo.url, "https://ai-tools-directory-swart.vercel.app/");
   assert.equal(context.window.AETHER_DATA.business.highlights.length, 4);
   assert.equal(context.window.AETHER_DATA.business.faq.length, 5);
+});
+
+test("growth data script loads the campaign queue", () => {
+  const source = fs.readFileSync(path.join(root, "growth-data.js"), "utf8");
+  const context = { window: {} };
+
+  vm.runInNewContext(source, context);
+
+  assert.equal(context.window.AETHER_GROWTH_DATA.brand.name, "AETHER");
+  assert.equal(context.window.AETHER_GROWTH_DATA.segments.length, 4);
+  assert.equal(context.window.AETHER_GROWTH_DATA.posts.length, 14);
+  assert.equal(context.window.AETHER_GROWTH_DATA.posts[0].platform, "微信朋友圈 / 允许推广的 AI 社群");
+  assert.equal(
+    context.window.AETHER_GROWTH_DATA.links.advertise,
+    "https://ai-tools-directory-swart.vercel.app/advertise.html",
+  );
 });
 
 test("entry page contains the AETHER system and monetization surfaces", () => {
@@ -215,6 +237,7 @@ test("robots and sitemap point search engines to the production site", () => {
       ),
     );
   });
+  assert.doesNotMatch(sitemap, /growth\.html/);
 });
 
 test("guide pages expose standalone SEO metadata and structured data", () => {
@@ -275,4 +298,15 @@ test("monetization landing pages expose SEO metadata and conversion copy", () =>
   assert.match(landingPages[1].source, /提交你的 AI 工具/);
   assert.match(landingPages[1].source, /¥99/);
   assert.match(landingPages[1].source, /加急审核/);
+});
+
+test("growth console is noindex and exposes local operations tools", () => {
+  assert.match(growthPage, /<title>AETHER 获客运营后台<\/title>/);
+  assert.match(growthPage, /<meta name="robots" content="noindex,nofollow" \/>/);
+  assert.match(growthPage, /id="growth-metrics"/);
+  assert.match(growthPage, /id="today-posts"/);
+  assert.match(growthPage, /id="campaign-board"/);
+  assert.match(growthPage, /id="lead-form"/);
+  assert.match(growthPage, /<script src="growth-data\.js"><\/script>\s*<script src="growth\.js"><\/script>/);
+  assert.match(growthPage, /每天执行 2 条合规图文发布任务/);
 });

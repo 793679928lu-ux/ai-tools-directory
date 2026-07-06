@@ -48,6 +48,14 @@
 
 更新套餐或联系方式时，需要同步检查首页商业合作区、`data.js`、这两个独立页面和测试。
 
+## 获客运营后台
+
+- `growth.html`：本机运营后台，用于管理每日两条图文发帖任务、图片下载、文案复制、发布状态、线索和效果数据。
+- `growth-data.js`：目标客户、平台、7 天发帖队列和图文内容。
+- `growth.js`：本地实时数据、PNG 图片生成、复制文案、发布标记和线索登记。
+
+后台页面设置为 `noindex,nofollow`，不加入 `sitemap.xml`。第一版数据只存在当前浏览器的 `localStorage`，适合个人运营记录；不要当成私密数据库。跨设备实时后台需要另接数据库和登录。
+
 ## SEO 与搜索收录
 
 - `index.html`：维护标题、描述、canonical、Open Graph、Twitter Card 和 JSON-LD。

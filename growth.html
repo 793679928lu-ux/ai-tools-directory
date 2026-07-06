@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AETHER 获客运营后台：管理每日两条图文发帖任务、发布状态、线索和运营数据。" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="theme-color" content="#080b18" />
+    <title>AETHER 获客运营后台</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="guide-page growth-page">
+    <header class="system-bar">
+      <a class="system-brand" href="index.html" aria-label="AETHER 首页"><span class="brand-icon" aria-hidden="true">AE</span><strong>AETHER</strong></a>
+      <nav class="system-menu" aria-label="运营后台导航"><a href="index.html#directory">工具库</a><a href="advertise.html">广告合作页</a><a href="submit-tool.html">提交工具页</a><a href="growth.html">运营后台</a></nav>
+      <div class="system-status" aria-label="页面状态"><span class="status-dot"></span><span>GROWTH LIVE</span></div>
+    </header>
+
+    <main class="guide-shell growth-shell">
+      <article class="guide-article">
+        <p class="eyebrow">AETHER GROWTH CONSOLE</p>
+        <h1>AETHER 获客运营后台</h1>
+        <p class="guide-lead">每天执行 2 条合规图文发布任务：先复制文案和下载图片，再去对应平台手动发布，最后把曝光、点击、回复和线索录回来。</p>
+        <div class="guide-meta"><span>每日任务：2 条</span><span>数据：本机实时更新</span><span>发帖：手动确认后执行</span></div>
+
+        <section class="growth-warning" aria-label="合规说明">
+          <strong>执行边界</strong>
+          <p>这个后台不自动群发、不自动进群、不绕过平台风控。只管理内容、图片和数据。发布前请确认对应平台或社群允许自荐、广告或商业合作信息。</p>
+        </section>
+
+        <section class="growth-metrics" id="growth-metrics" aria-label="运营指标"></section>
+
+        <section class="guide-panel">
+          <div class="growth-section-heading">
+            <div>
+              <p class="section-kicker">TODAY</p>
+              <h2>今天先发这 2 条</h2>
+            </div>
+            <button class="button secondary-button" id="reset-growth-data" type="button">清空本机数据</button>
+          </div>
+          <div class="post-grid" id="today-posts"></div>
+        </section>
+
+        <section class="guide-panel">
+          <div class="growth-section-heading">
+            <div>
+              <p class="section-kicker">CUSTOMER SEGMENTS</p>
+              <h2>优先找这些客户</h2>
+            </div>
+          </div>
+          <div class="segment-grid" id="segment-grid"></div>
+        </section>
+
+        <section class="guide-panel">
+          <div class="growth-section-heading">
+            <div>
+              <p class="section-kicker">CAMPAIGN QUEUE</p>
+              <h2>7 天图文发帖队列</h2>
+            </div>
+            <p>每条都可以下载配图、复制文案、标记发布并录入数据。</p>
+          </div>
+          <div class="post-grid" id="campaign-board"></div>
+        </section>
+
+        <section class="guide-panel">
+          <div class="growth-section-heading">
+            <div>
+              <p class="section-kicker">LEADS</p>
+              <h2>线索登记</h2>
+            </div>
+          </div>
+          <form class="lead-form" id="lead-form">
+            <label>客户 / 产品<input name="name" required placeholder="例如：某 AI 写作工具" /></label>
+            <label>来源<input name="source" placeholder="例如：小红书 / 知乎 / 微信群" /></label>
+            <label>联系方式<input name="contact" placeholder="微信、邮箱或站内私信" /></label>
+            <label>意向套餐<select name="package"><option>精选工具置顶 ¥99</option><option>内容流原生广告 ¥199</option><option>首页横幅 ¥299</option><option>首发组合套餐 ¥499</option><option>付费加急审核 ¥99</option></select></label>
+            <label>状态<select name="status"><option>新线索</option><option>已联系</option><option>有意向</option><option>已成交</option><option>暂不合适</option></select></label>
+            <label class="lead-note">备注<input name="note" placeholder="需求、预算、下一步动作" /></label>
+            <button class="button primary-button" type="submit">登记线索</button>
+          </form>
+          <div class="lead-table-wrap">
+            <table class="lead-table">
+              <thead>
+                <tr><th>客户</th><th>来源</th><th>套餐</th><th>状态</th><th>备注</th><th>操作</th></tr>
+              </thead>
+              <tbody id="lead-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <script src="growth-data.js"></script>
+    <script src="growth.js"></script>
+  </body>
+</html>
