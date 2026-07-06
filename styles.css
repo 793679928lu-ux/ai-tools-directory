@@ -950,6 +950,34 @@ svg {
   cursor: pointer;
 }
 
+.business-highlights {
+  display: grid;
+  margin: 0 0 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.business-highlight {
+  min-height: 132px;
+  padding: 17px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 90% 0, rgba(58, 205, 255, 0.12), transparent 54%),
+    rgba(255, 255, 255, 0.04);
+}
+
+.business-highlight h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
+.business-highlight p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -1024,6 +1052,48 @@ svg {
   margin: 14px 0 0;
   color: #818ba0;
   font-size: 11px;
+}
+
+.business-faq {
+  display: grid;
+  margin-top: 26px;
+  padding: 20px;
+  grid-template-columns: minmax(180px, 0.45fr) minmax(0, 1fr);
+  gap: 18px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.business-faq h3 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+.faq-list {
+  display: grid;
+  gap: 10px;
+}
+
+.faq-item {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background: rgba(9, 12, 23, 0.46);
+}
+
+.faq-item summary {
+  padding: 14px 16px;
+  cursor: pointer;
+  color: #e8ebf2;
+  font-weight: 760;
+}
+
+.faq-item p {
+  margin: 0;
+  padding: 0 16px 15px;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .submit-section {
@@ -1341,6 +1411,10 @@ svg {
   .pricing-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .business-highlights {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 1060px) {
@@ -1358,6 +1432,10 @@ svg {
 
   .submit-section {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .business-faq {
+    grid-template-columns: 1fr;
   }
 
   .submit-copy {
@@ -1497,6 +1575,14 @@ svg {
     min-width: 0;
   }
 
+  .business-highlights {
+    grid-template-columns: 1fr;
+  }
+
+  .business-highlight {
+    min-height: 0;
+  }
+
   .pricing-grid {
     grid-template-columns: 1fr;
   }
@@ -1508,6 +1594,10 @@ svg {
   .submit-section {
     padding: 16px;
     grid-template-columns: 1fr;
+  }
+
+  .business-faq {
+    padding: 16px;
   }
 
   .submit-copy {

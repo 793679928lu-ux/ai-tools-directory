@@ -4,6 +4,21 @@ window.AETHER_DATA = {
     tagline: "AI DISCOVERY OS",
     description: "为所有人提供简单、直观的 AI 工具发现系统。",
   },
+  seo: {
+    url: "https://ai-tools-directory-swart.vercel.app/",
+    title: "AETHER — AI 工具导航与发现系统",
+    description:
+      "AETHER 是面向中文用户的 AI 工具导航，精选 AI 对话、绘图、视频、办公、编程和音乐工具，帮助用户快速找到合适的 AI 产品。",
+    keywords: [
+      "AI工具导航",
+      "AI工具目录",
+      "AI写作工具",
+      "AI绘图工具",
+      "AI视频工具",
+      "AI编程工具",
+      "AI办公工具",
+    ],
+  },
   categories: [
     "全部",
     "AI 对话",
@@ -177,6 +192,24 @@ window.AETHER_DATA = {
   business: {
     email: "793679928@qq.com",
     wechat: "793679928",
+    highlights: [
+      {
+        title: "高意向用户",
+        description: "访问者正在主动寻找 AI 工具，比普通展示广告更接近试用和购买决策。",
+      },
+      {
+        title: "首发友好",
+        description: "适合新品冷启动、工具收录、品牌曝光和早期中文市场测试。",
+      },
+      {
+        title: "人工审核",
+        description: "所有商业内容都会标注广告或赞助，并人工确认素材、排期和展示位置。",
+      },
+      {
+        title: "风险透明",
+        description: "付费购买展示或优先审核，不承诺点击、成交、排名或永久收录。",
+      },
+    ],
     packages: [
       {
         id: "featured",
@@ -218,6 +251,28 @@ window.AETHER_DATA = {
     disclaimer: "所有广告和加急服务均由人工确认。付费不保证流量、点击、成交或收录结果。",
     disclosure:
       "标注“广告”或“赞助”的内容属于付费展示。部分外链未来可能是联盟链接，网站可能获得佣金，但不会增加你的购买价格。",
+    faq: [
+      {
+        question: "付款后工具一定会被收录吗？",
+        answer: "不会。付费加急只代表优先审核，不保证通过、排名或永久展示。",
+      },
+      {
+        question: "广告内容会明确标注吗？",
+        answer: "会。广告、赞助和未来联盟链接都会明确披露，不伪装成普通编辑推荐。",
+      },
+      {
+        question: "可以投放联盟链接吗？",
+        answer: "可以，但必须使用已经获批的真实联盟链接，并且页面会保留联盟披露。",
+      },
+      {
+        question: "如何提交我的 AI 工具？",
+        answer: "可以使用免费提交入口排队审核，也可以选择 ¥99 加急审核优先处理资料。",
+      },
+      {
+        question: "广告多久可以上线？",
+        answer: "首期采用人工确认。素材、位置和排期确认后，再通过微信或邮件沟通上线时间。",
+      },
+    ],
   },
   ads: {
     banner: {

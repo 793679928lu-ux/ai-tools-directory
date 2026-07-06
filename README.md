@@ -35,9 +35,18 @@
 
 - `ads.native`：工具列表中的原生广告卡。
 - `business.packages`：广告套餐与价格。
+- `business.highlights`：广告合作卖点。
+- `business.faq`：商业合作常见问题。
 - `business.email`、`business.wechat`：公开商务联系方式。
 
 广告链接当前指向页面内的合作区域。成交广告可把 `url` 替换为实际落地页；外部链接会自动在新标签页打开。
+
+## SEO 与搜索收录
+
+- `index.html`：维护标题、描述、canonical、Open Graph、Twitter Card 和 JSON-LD。
+- `data.js` 中的 `seo`：维护站点 URL、标题、描述和关键词。
+- `robots.txt`：告诉搜索引擎允许抓取网站，并声明 sitemap 地址。
+- `sitemap.xml`：维护线上首页地址。更换域名后需要同步更新。
 
 ## 文件说明
 
@@ -45,6 +54,7 @@
 - `styles.css`：视觉和响应式布局。
 - `data.js`：工具、分类、广告、价格和联系方式。
 - `app.js`：搜索、筛选、收藏、商务联系和渲染逻辑。
+- `robots.txt` / `sitemap.xml`：搜索引擎抓取入口。
 - `tests/`：逻辑与静态文件兼容测试。
 
 ## 运行测试

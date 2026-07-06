@@ -366,8 +366,58 @@
     grid.replaceChildren(fragment);
   }
 
+  function renderBusinessHighlights(data) {
+    const container = document.querySelector("#business-highlights");
+    const items = data.business.highlights || [];
+    if (!container || items.length === 0) return;
+
+    const fragment = document.createDocumentFragment();
+
+    items.forEach((item) => {
+      const card = document.createElement("article");
+      card.className = "business-highlight";
+
+      const title = document.createElement("h3");
+      title.textContent = item.title;
+
+      const description = document.createElement("p");
+      description.textContent = item.description;
+
+      card.append(title, description);
+      fragment.append(card);
+    });
+
+    container.replaceChildren(fragment);
+  }
+
+  function renderBusinessFaq(data) {
+    const list = document.querySelector("#business-faq-list");
+    const items = data.business.faq || [];
+    if (!list || items.length === 0) return;
+
+    const fragment = document.createDocumentFragment();
+
+    items.forEach((item) => {
+      const details = document.createElement("details");
+      details.className = "faq-item";
+
+      const summary = document.createElement("summary");
+      summary.textContent = item.question;
+
+      const answer = document.createElement("p");
+      answer.textContent = item.answer;
+
+      details.append(summary, answer);
+      fragment.append(details);
+    });
+
+    list.replaceChildren(fragment);
+  }
+
   function configureBusiness(data) {
+    renderBusinessHighlights(data);
     renderPricing(data);
+    renderBusinessFaq(data);
 
     const email = document.querySelector("#business-email");
     email.textContent = data.business.email;
