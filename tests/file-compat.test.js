@@ -57,6 +57,26 @@ const guidePages = [
     path: "guides/free-vs-paid-ai-tools.html",
     title: "免费 AI 工具 vs 付费 AI 工具",
   },
+  {
+    path: "guides/ai-tools-directory-overview.html",
+    title: "AI 工具导航总览",
+  },
+  {
+    path: "guides/ai-tools-for-students.html",
+    title: "适合学生的 AI 工具",
+  },
+  {
+    path: "guides/ai-tools-for-creators.html",
+    title: "适合自媒体的 AI 工具",
+  },
+  {
+    path: "guides/ai-tools-for-cross-border-ecommerce.html",
+    title: "适合跨境电商的 AI 工具",
+  },
+  {
+    path: "guides/ai-tools-for-programmers.html",
+    title: "适合程序员的 AI 工具",
+  },
 ].map((page) => ({
   ...page,
   source: fs.readFileSync(path.join(root, page.path), "utf8"),
@@ -119,6 +139,11 @@ test("entry page contains the AETHER system and monetization surfaces", () => {
   assert.match(html, /guides\/midjourney-vs-canva-ai\.html/);
   assert.match(html, /guides\/cursor-vs-github-copilot\.html/);
   assert.match(html, /guides\/free-vs-paid-ai-tools\.html/);
+  assert.match(html, /guides\/ai-tools-directory-overview\.html/);
+  assert.match(html, /guides\/ai-tools-for-students\.html/);
+  assert.match(html, /guides\/ai-tools-for-creators\.html/);
+  assert.match(html, /guides\/ai-tools-for-cross-border-ecommerce\.html/);
+  assert.match(html, /guides\/ai-tools-for-programmers\.html/);
   assert.match(html, /id="business-highlights"/);
   assert.match(html, /id="business-faq-list"/);
   assert.match(html, /广告与联盟披露/);
