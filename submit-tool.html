@@ -34,7 +34,7 @@
   <body class="guide-page">
     <header class="system-bar">
       <a class="system-brand" href="index.html" aria-label="AETHER 首页"><span class="brand-icon" aria-hidden="true">AE</span><strong>AETHER</strong></a>
-      <nav class="system-menu" aria-label="提交工具导航"><a href="index.html#directory">工具库</a><a href="index.html#guides">选型指南</a><a href="advertise.html">广告合作</a><a href="submit-tool.html">提交工具</a></nav>
+      <nav class="system-menu" aria-label="提交工具导航"><a href="index.html#directory">工具库</a><a href="index.html#guides">选型指南</a><a href="advertise.html" data-track="nav_advertise_click" data-track-label="submit_nav">广告合作</a><a href="submit-tool.html">提交工具</a></nav>
       <div class="system-status" aria-label="页面状态"><span class="status-dot"></span><span>SUBMIT</span></div>
     </header>
     <main class="guide-shell">
@@ -49,13 +49,13 @@
             <small>免费</small>
             <h2>普通提交</h2>
             <p>适合不着急上线的工具。AETHER 会按排队顺序审核，资料不完整或不适合本站定位时可能不收录。</p>
-            <a class="button secondary-button" href="mailto:793679928@qq.com?subject=%E5%85%8D%E8%B4%B9%E6%8F%90%E4%BA%A4%20AI%20%E5%B7%A5%E5%85%B7">免费提交</a>
+            <a class="button secondary-button" href="mailto:793679928@qq.com?subject=%E5%85%8D%E8%B4%B9%E6%8F%90%E4%BA%A4%20AI%20%E5%B7%A5%E5%85%B7" data-track="free_submit_click" data-track-label="submit_page_card">免费提交</a>
           </article>
           <article class="submit-path-card is-recommended">
             <small>¥99 / 单次</small>
             <h2>加急审核</h2>
             <p>适合希望优先处理资料的产品。付费只代表优先审核，不保证通过、排名、成交或永久收录。</p>
-            <a class="button primary-button" href="mailto:793679928@qq.com?subject=AETHER%20%C2%A599%20%E5%8A%A0%E6%80%A5%E5%AE%A1%E6%A0%B8">申请加急</a>
+            <a class="button primary-button" href="mailto:793679928@qq.com?subject=AETHER%20%C2%A599%20%E5%8A%A0%E6%80%A5%E5%AE%A1%E6%A0%B8" data-track="priority_submit_click" data-track-label="submit_page_card">申请加急</a>
           </article>
         </section>
 
@@ -111,10 +111,11 @@
 
         <section class="guide-cta">
           <div><h2>发送资料给 AETHER</h2><p>邮箱：793679928@qq.com　微信：793679928</p></div>
-          <a class="button primary-button" href="mailto:793679928@qq.com?subject=%E6%8F%90%E4%BA%A4%20AI%20%E5%B7%A5%E5%85%B7">邮件提交</a>
-          <a class="button secondary-button" href="advertise.html">查看广告合作</a>
+          <a class="button primary-button" href="mailto:793679928@qq.com?subject=%E6%8F%90%E4%BA%A4%20AI%20%E5%B7%A5%E5%85%B7" data-track="free_submit_click" data-track-label="submit_page_cta">邮件提交</a>
+          <a class="button secondary-button" href="advertise.html" data-track="nav_advertise_click" data-track-label="submit_page_cta">查看广告合作</a>
         </section>
       </article>
     </main>
+    <script src="analytics.js"></script>
   </body>
 </html>

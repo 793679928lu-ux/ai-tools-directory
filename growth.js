@@ -4,20 +4,56 @@
   const STORAGE_KEY = "aether-growth-state";
   const data = global.AETHER_GROWTH_DATA;
 
+  function normalizePostStats(value) {
+    const source = value && typeof value === "object" ? value : {};
+    return {
+      published: Boolean(source.published),
+      impressions: Math.max(0, Number.parseInt(source.impressions || "0", 10) || 0),
+      clicks: Math.max(0, Number.parseInt(source.clicks || "0", 10) || 0),
+      replies: Math.max(0, Number.parseInt(source.replies || "0", 10) || 0),
+      leads: Math.max(0, Number.parseInt(source.leads || "0", 10) || 0),
+    };
+  }
+
+  function normalizeLead(value) {
+    const source = value && typeof value === "object" ? value : {};
+    return {
+      name: String(source.name || "").trim(),
+      source: String(source.source || "").trim(),
+      contact: String(source.contact || "").trim(),
+      package: String(source.package || "精选工具置顶 ¥99").trim(),
+      status: String(source.status || "新线索").trim(),
+      note: String(source.note || "").trim(),
+      createdAt: String(source.createdAt || new Date().toISOString()),
+    };
+  }
+
+  function normalizeState(value) {
+    const source = value && typeof value === "object" ? value : {};
+    const posts = {};
+    Object.entries(source.posts || {}).forEach(([postId, stats]) => {
+      posts[postId] = normalizePostStats(stats);
+    });
+
+    return {
+      posts,
+      leads: Array.isArray(source.leads)
+        ? source.leads.map(normalizeLead).filter((lead) => lead.name)
+        : [],
+    };
+  }
+
   function readState() {
     try {
       const parsed = JSON.parse(global.localStorage.getItem(STORAGE_KEY) || "{}");
-      return {
-        posts: parsed.posts && typeof parsed.posts === "object" ? parsed.posts : {},
-        leads: Array.isArray(parsed.leads) ? parsed.leads : [],
-      };
+      return normalizeState(parsed);
     } catch {
       return { posts: {}, leads: [] };
     }
   }
 
   function writeState(state) {
-    global.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    global.localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizeState(state)));
   }
 
   function moneyFromPackage(value) {
@@ -33,6 +69,33 @@
 
   function postText(post) {
     return `${post.text}\n\n链接：${postLink(post)}\n\n${post.hashtags.join(" ")}`;
+  }
+
+  function buildExportPayload(state) {
+    return {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      state: normalizeState(state),
+    };
+  }
+
+  function exportState(state) {
+    const payload = buildExportPayload(state);
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const date = payload.exportedAt.slice(0, 10);
+    const link = document.createElement("a");
+    link.download = `aether-growth-${date}.json`;
+    link.href = url;
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function parseImportedState(text) {
+    const parsed = JSON.parse(text);
+    return normalizeState(parsed.state || parsed);
   }
 
   function postState(state, postId) {
@@ -355,6 +418,34 @@
       showToast("线索已登记");
     });
 
+    document.querySelector("#export-growth-data").addEventListener("click", () => {
+      exportState(state);
+      showToast("运营数据已导出");
+    });
+
+    document.querySelector("#import-growth-data").addEventListener("click", () => {
+      document.querySelector("#import-growth-file").click();
+    });
+
+    document.querySelector("#import-growth-file").addEventListener("change", async (event) => {
+      const [file] = event.currentTarget.files || [];
+      if (!file) return;
+
+      try {
+        const imported = parseImportedState(await file.text());
+        if (!global.confirm("导入会覆盖当前浏览器里的运营数据，确认继续？")) return;
+        state.posts = imported.posts;
+        state.leads = imported.leads;
+        writeState(state);
+        renderAll(state);
+        showToast("运营数据已导入");
+      } catch {
+        showToast("导入失败，请确认是 AETHER 导出的 JSON 文件");
+      } finally {
+        event.currentTarget.value = "";
+      }
+    });
+
     document.querySelector("#reset-growth-data").addEventListener("click", () => {
       if (!global.confirm("确认清空本机运营数据？这不会影响线上网站。")) return;
       global.localStorage.removeItem(STORAGE_KEY);
@@ -378,6 +469,9 @@
     postText,
     moneyFromPackage,
     readState,
+    normalizeState,
+    buildExportPayload,
+    parseImportedState,
   };
 
   init();

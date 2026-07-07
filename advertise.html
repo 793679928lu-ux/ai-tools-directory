@@ -34,7 +34,7 @@
   <body class="guide-page">
     <header class="system-bar">
       <a class="system-brand" href="index.html" aria-label="AETHER 首页"><span class="brand-icon" aria-hidden="true">AE</span><strong>AETHER</strong></a>
-      <nav class="system-menu" aria-label="商业合作导航"><a href="index.html#directory">工具库</a><a href="index.html#guides">选型指南</a><a href="submit-tool.html">提交工具</a><a href="advertise.html">广告合作</a></nav>
+      <nav class="system-menu" aria-label="商业合作导航"><a href="index.html#directory">工具库</a><a href="index.html#guides">选型指南</a><a href="submit-tool.html" data-track="submit_tool_click" data-track-label="advertise_nav">提交工具</a><a href="advertise.html">广告合作</a></nav>
       <div class="system-status" aria-label="页面状态"><span class="status-dot"></span><span>MEDIA KIT</span></div>
     </header>
     <main class="guide-shell">
@@ -113,16 +113,41 @@
         </section>
 
         <section class="guide-panel">
+          <div class="growth-section-heading">
+            <div>
+              <p class="section-kicker">LEAD CAPTURE</p>
+              <h2>广告咨询表单</h2>
+            </div>
+            <p>填写后可直接生成邮件或复制咨询内容，方便客户快速联系你。</p>
+          </div>
+          <form class="ad-inquiry-form" id="ad-inquiry-form">
+            <label>产品名称<input name="product" required placeholder="例如：某 AI 写作工具" /></label>
+            <label>产品网址<input name="website" type="url" placeholder="https://example.com" /></label>
+            <label>联系方式<input name="contact" required placeholder="邮箱、微信或站内私信" /></label>
+            <label>意向套餐<select name="package"><option>精选工具置顶 ¥99</option><option>内容流原生广告 ¥199</option><option>首页横幅 ¥299</option><option>首发组合套餐 ¥499</option><option>付费加急审核 ¥99</option><option>暂不确定，想先咨询</option></select></label>
+            <label>希望上线时间<input name="launchTime" placeholder="例如：本周 / 下周一 / 活动前" /></label>
+            <label class="form-field-full">补充说明<input name="note" placeholder="目标用户、预算、投放周期或素材情况" /></label>
+            <div class="form-actions">
+              <button class="button primary-button" type="submit" data-track="ad_inquiry_email_click" data-track-label="form_submit">生成邮件咨询</button>
+              <button class="button secondary-button" id="copy-ad-inquiry" type="button" data-track="ad_inquiry_copy_click" data-track-label="form_copy">复制咨询内容</button>
+            </div>
+          </form>
+          <p class="form-status" id="ad-inquiry-status" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="guide-panel">
           <h2>风险说明</h2>
           <p>所有广告和加急服务均由人工确认。付费不保证流量、点击、成交、收录结果、展示排名或永久展示。广告、赞助和未来联盟链接都会明确披露，不伪装成普通编辑推荐。</p>
         </section>
 
         <section class="guide-cta">
           <div><h2>联系 AETHER 预订广告位</h2><p>邮箱：793679928@qq.com　微信：793679928</p></div>
-          <a class="button primary-button" href="mailto:793679928@qq.com?subject=AETHER%20%E5%B9%BF%E5%91%8A%E5%90%88%E4%BD%9C%E5%92%A8%E8%AF%A2">邮件咨询</a>
-          <a class="button secondary-button" href="submit-tool.html">提交工具</a>
+          <a class="button primary-button" href="mailto:793679928@qq.com?subject=AETHER%20%E5%B9%BF%E5%91%8A%E5%90%88%E4%BD%9C%E5%92%A8%E8%AF%A2" data-track="business_email_click" data-track-label="advertise_cta">邮件咨询</a>
+          <a class="button secondary-button" href="submit-tool.html" data-track="submit_tool_click" data-track-label="advertise_cta">提交工具</a>
         </section>
       </article>
     </main>
+    <script src="analytics.js"></script>
+    <script src="advertise.js"></script>
   </body>
 </html>

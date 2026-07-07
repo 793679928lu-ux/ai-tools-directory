@@ -45,6 +45,17 @@
     return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
+  function trackEvent(name, data = {}) {
+    if (!global.AETHER_TRACK || typeof global.AETHER_TRACK.event !== "function") return;
+    global.AETHER_TRACK.event(name, data);
+  }
+
+  function setTracking(element, name, label, group) {
+    element.dataset.track = name;
+    if (label) element.dataset.trackLabel = label;
+    if (group) element.dataset.trackGroup = group;
+  }
+
   function toggleFavorite(favorites, toolName) {
     const next = [...favorites];
     const index = next.indexOf(toolName);
@@ -133,6 +144,7 @@
     link.className = "tool-link";
     applyLinkSafety(link, resolveToolUrl(tool));
     link.setAttribute("aria-label", `打开 ${tool.name}`);
+    setTracking(link, "tool_open", tool.name, tool.category);
 
     const top = document.createElement("span");
     top.className = "tool-card-top";
@@ -183,9 +195,15 @@
     card.append(link, favorite);
 
     favorite.addEventListener("click", () => {
+      const willFavorite = !state.favorites.includes(tool.name);
       state.favorites = toggleFavorite(state.favorites, tool.name);
       const saved = writeFavorites(state.favorites);
       renderTools(data);
+      trackEvent("favorite_toggle", {
+        label: tool.name,
+        group: tool.category,
+        action: willFavorite ? "add" : "remove",
+      });
       showToast(
         saved
           ? state.favorites.includes(tool.name)
@@ -202,6 +220,7 @@
     const card = document.createElement("a");
     card.className = "sponsor-card";
     applyLinkSafety(card, ad.url);
+    setTracking(card, "sponsor_click", ad.title, "directory");
 
     const label = document.createElement("span");
     label.className = "sponsor-label";
@@ -357,6 +376,7 @@
         `AETHER 商业合作：${item.name}`,
         body,
       );
+      setTracking(link, "pricing_email_click", item.name, "business");
       link.textContent = "邮件咨询";
 
       card.append(name, price, description, link);
@@ -426,6 +446,7 @@
       "AETHER 商业合作咨询",
       "产品名称：\n产品网址：\n希望合作位置：\n希望上线时间：",
     );
+    setTracking(email, "business_email_click", data.business.email, "business");
 
     document.querySelector("#wechat-value").textContent = data.business.wechat;
     document.querySelector("#business-disclaimer").textContent =
@@ -433,7 +454,9 @@
     document.querySelector("#affiliate-disclosure").textContent =
       data.business.disclosure;
 
-    document.querySelector("#copy-wechat").addEventListener("click", async () => {
+    const copyWechat = document.querySelector("#copy-wechat");
+    setTracking(copyWechat, "wechat_copy", "business_wechat", "business");
+    copyWechat.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(data.business.wechat);
         showToast("微信号已复制");
@@ -442,16 +465,21 @@
       }
     });
 
-    document.querySelector("#free-submit").href = buildMailto(
+    const freeSubmit = document.querySelector("#free-submit");
+    freeSubmit.href = buildMailto(
       data.business.email,
       "免费提交 AI 工具",
       "工具名称：\n工具网址：\n一句话介绍：\n适用分类：",
     );
-    document.querySelector("#priority-submit").href = buildMailto(
+    setTracking(freeSubmit, "free_submit_click", "free_submit", "submit");
+
+    const prioritySubmit = document.querySelector("#priority-submit");
+    prioritySubmit.href = buildMailto(
       data.business.email,
       "AETHER ¥99 加急审核",
       "工具名称：\n工具网址：\n一句话介绍：\n微信号：\n\n我已了解付费加急不保证收录。",
     );
+    setTracking(prioritySubmit, "priority_submit_click", "priority_review", "submit");
   }
 
   function initDirectory() {

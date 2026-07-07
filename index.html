@@ -113,7 +113,7 @@
         <a href="#directory">分类</a>
         <a href="#guides">指南</a>
         <button type="button" data-view="收藏" aria-pressed="false">收藏</button>
-        <a href="advertise.html">商业合作</a>
+        <a href="advertise.html" data-track="nav_advertise_click" data-track-label="top_nav">商业合作</a>
       </nav>
       <div class="system-status" aria-label="网站状态">
         <span class="status-dot"></span>
@@ -175,7 +175,7 @@
           </button>
         </nav>
 
-        <a class="sidebar-sponsor" href="advertise.html">
+        <a class="sidebar-sponsor" href="advertise.html" data-track="sponsor_click" data-track-label="sidebar_advertise" data-track-group="home">
           <small>品牌合作</small>
           <strong>让更多用户<br />发现你的 AI 产品</strong>
           <span>查看广告方案 →</span>
@@ -189,7 +189,7 @@
             <span id="search-value">搜索工具、用途或工作流...</span>
             <kbd>⌘ K</kbd>
           </button>
-          <a class="button primary-button toolbar-submit" href="submit-tool.html">＋ 提交工具</a>
+          <a class="button primary-button toolbar-submit" href="submit-tool.html" data-track="submit_tool_click" data-track-label="toolbar">＋ 提交工具</a>
           <button class="mobile-search-button" id="mobile-search" type="button" aria-label="搜索">
             ⌕
           </button>
@@ -359,7 +359,7 @@
                 <p>首发阶段采用人工确认和微信收款，位置、素材与排期沟通后生效。</p>
                 <div class="section-actions">
                   <a class="button primary-button" href="advertise.html">查看完整 Media Kit</a>
-                  <a class="button secondary-button" href="submit-tool.html">提交工具</a>
+                  <a class="button secondary-button" href="submit-tool.html" data-track="submit_tool_click" data-track-label="business_section">提交工具</a>
                 </div>
               </div>
               <div class="contact-card">
@@ -483,6 +483,7 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
+    <script src="analytics.js"></script>
     <script src="data.js"></script>
     <script src="app.js"></script>
   </body>

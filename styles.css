@@ -1670,6 +1670,39 @@ svg {
   text-align: right;
 }
 
+.data-tool-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.metric-source-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metric-source-grid article {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.metric-source-grid strong {
+  display: block;
+  color: #edf0f6;
+}
+
+.metric-source-grid span {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
 .post-grid,
 .segment-grid {
   display: grid;
@@ -1846,7 +1879,8 @@ svg {
 }
 
 .post-stats-form label,
-.lead-form label {
+.lead-form label,
+.ad-inquiry-form label {
   display: grid;
   gap: 7px;
   color: #9fa9bb;
@@ -1856,7 +1890,9 @@ svg {
 
 .post-stats-form input,
 .lead-form input,
-.lead-form select {
+.lead-form select,
+.ad-inquiry-form input,
+.ad-inquiry-form select {
   min-height: 42px;
   padding: 0 12px;
   border: 1px solid var(--line);
@@ -1870,6 +1906,30 @@ svg {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
+}
+
+.ad-inquiry-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.form-field-full,
+.form-actions {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.form-status {
+  min-height: 20px;
+  margin: 12px 0 0;
+  color: #a8f1c9;
+  font-size: 12px;
 }
 
 .lead-note {
@@ -2205,12 +2265,14 @@ svg {
   .ad-preview-grid,
   .script-grid,
   .growth-metrics,
+  .metric-source-grid,
   .segment-grid {
     grid-template-columns: 1fr 1fr;
   }
 
   .post-grid,
-  .lead-form {
+  .lead-form,
+  .ad-inquiry-form {
     grid-template-columns: 1fr;
   }
 
@@ -2347,9 +2409,11 @@ svg {
   .ad-preview-grid,
   .script-grid,
   .growth-metrics,
+  .metric-source-grid,
   .post-grid,
   .segment-grid,
   .lead-form,
+  .ad-inquiry-form,
   .post-stats-form {
     grid-template-columns: 1fr;
   }
@@ -2361,6 +2425,10 @@ svg {
   .growth-section-heading {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .data-tool-actions {
+    justify-content: flex-start;
   }
 
   .growth-section-heading > p {

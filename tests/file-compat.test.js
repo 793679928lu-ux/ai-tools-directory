@@ -97,9 +97,11 @@ const landingPages = [
 }));
 
 test("entry page uses ordered local classic scripts", () => {
+  const analyticsIndex = html.indexOf('<script src="analytics.js"></script>');
   const dataIndex = html.indexOf('<script src="data.js"></script>');
   const appIndex = html.indexOf('<script src="app.js"></script>');
 
+  assert.ok(analyticsIndex > -1);
   assert.ok(dataIndex > -1);
   assert.ok(appIndex > dataIndex);
   assert.doesNotMatch(html, /<script[^>]+type=["']module["']/i);
@@ -118,6 +120,17 @@ test("html pages do not require remote styles or scripts", () => {
       /<link[^>]+rel=["']stylesheet["'][^>]+href=["']https?:/i,
     );
   });
+});
+
+test("public pages load local analytics but growth console stays private", () => {
+  assert.match(html, /<script src="analytics\.js"><\/script>/);
+  landingPages.forEach((page) => {
+    assert.match(page.source, /<script src="analytics\.js"><\/script>/);
+  });
+  guidePages.forEach((page) => {
+    assert.match(page.source, /<script src="\.\.\/analytics\.js"><\/script>/);
+  });
+  assert.doesNotMatch(growthPage, /analytics\.js/);
 });
 
 test("data script loads without network or module APIs", () => {
@@ -304,9 +317,22 @@ test("growth console is noindex and exposes local operations tools", () => {
   assert.match(growthPage, /<title>AETHER 获客运营后台<\/title>/);
   assert.match(growthPage, /<meta name="robots" content="noindex,nofollow" \/>/);
   assert.match(growthPage, /id="growth-metrics"/);
+  assert.match(growthPage, /id="export-growth-data"/);
+  assert.match(growthPage, /id="import-growth-data"/);
+  assert.match(growthPage, /id="import-growth-file"/);
   assert.match(growthPage, /id="today-posts"/);
   assert.match(growthPage, /id="campaign-board"/);
   assert.match(growthPage, /id="lead-form"/);
   assert.match(growthPage, /<script src="growth-data\.js"><\/script>\s*<script src="growth\.js"><\/script>/);
   assert.match(growthPage, /每天执行 2 条合规图文发布任务/);
+  assert.match(growthPage, /Vercel Web Analytics/);
+});
+
+test("advertising page exposes an inquiry form and conversion tracking hooks", () => {
+  const source = landingPages.find((page) => page.path === "advertise.html").source;
+  assert.match(source, /id="ad-inquiry-form"/);
+  assert.match(source, /id="copy-ad-inquiry"/);
+  assert.match(source, /data-track="ad_inquiry_email_click"/);
+  assert.match(source, /data-track="ad_inquiry_copy_click"/);
+  assert.match(source, /<script src="advertise\.js"><\/script>/);
 });
