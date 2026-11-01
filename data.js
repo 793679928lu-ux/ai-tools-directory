@@ -164,6 +164,14 @@ window.AETHER_DATA = {
       accent: "#f26207",
     },
     {
+      name: "agent-qa",
+      description: "自然语言测试 Web、Android 与 iOS，结合 memidex 持久记忆与经验证的自我改进。",
+      category: "编程开发",
+      tags: ["测试", "MCP"],
+      url: "https://vostride.com",
+      accent: "#14b8a6",
+    },
+    {
       name: "Suno",
       description: "输入提示词即可生成完整歌曲、伴奏与人声。",
       category: "音频音乐",
