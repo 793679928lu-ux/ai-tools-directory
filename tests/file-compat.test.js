@@ -141,7 +141,7 @@ test("data script loads without network or module APIs", () => {
 
   assert.equal(context.window.AETHER_DATA.brand.name, "AETHER");
   assert.equal(context.window.AETHER_DATA.brand.tagline, "AI DISCOVERY OS");
-  assert.equal(context.window.AETHER_DATA.tools.length, 19);
+  assert.equal(context.window.AETHER_DATA.tools.length, 20);
   assert.equal(context.window.AETHER_DATA.categories[0], "全部");
   assert.equal(context.window.AETHER_DATA.business.email, "793679928@qq.com");
   assert.equal(context.window.AETHER_DATA.business.wechat, "793679928");
